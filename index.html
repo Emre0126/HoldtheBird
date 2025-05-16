@@ -3,9 +3,27 @@
   <head>
     <meta charset="utf-8" />
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>Unity WebGL Player | Finger Flight</title>
+    <title>Unity WebGL Player | Hold the Bird</title>
     <link rel="shortcut icon" href="TemplateData/favicon.ico" />
     <link rel="stylesheet" href="TemplateData/style.css" />
+    <style>
+      /* Sayfada yatay ve dikey ortalamak için */
+      html, body {
+        margin: 0;
+        padding: 0;
+        height: 100%;
+      }
+      body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background: #000; /* İsteğe bağlı: arka plan rengi */
+      }
+      #unity-container {
+        /* Masaüstünde canvas boyutu zaten script ile ayarlanıyor */
+        /* Gerekirse burada max-width veya başka ayarlar ekleyebilirsiniz */
+      }
+    </style>
   </head>
   <body>
     <div id="unity-container" class="unity-desktop">
@@ -21,7 +39,6 @@
         <div id="unity-webgl-logo"></div>
         <div id="unity-fullscreen-button"></div>
         <div id="unity-build-title">Hold the Bird</div>
-        
       </div>
     </div>
 
@@ -52,7 +69,6 @@
       const loaderUrl = buildUrl + "/FlightUnity.loader.js";
 
       const config = {
-        // Burada .gz uzant�s�n� a��k�a ekliyoruz
         dataUrl:             buildUrl + "/FlightUnity.data",
         frameworkUrl:        buildUrl + "/FlightUnity.framework.js",
         codeUrl:             buildUrl + "/FlightUnity.wasm",
@@ -61,10 +77,9 @@
         productName:         "Finger Flight",
         productVersion:      "1.0.2",
         showBanner:          unityShowBanner,
-        decompressionFallback: false  // kesinlikle .unityweb veya d�z dosyaya d�nme
+        decompressionFallback: false
       };
 
-      // Mobil i�in viewport
       if (/iPhone|iPad|iPod|Android/i.test(navigator.userAgent)) {
         const meta = document.createElement("meta");
         meta.name    = "viewport";
@@ -89,13 +104,13 @@
           unityInstance = instance;
           loadingBar.style.display = "none";
           fullscreenButton.onclick = () => instance.SetFullscreen(1);
-          console.log("Unity y�klendi");
+          console.log("Unity yüklendi");
         }).catch((msg) => alert(msg));
       };
       document.body.appendChild(script);
     </script>
 
-    <!-- Firebase entegrasyonu oldu�u gibi kalabilir -->
+    <!-- Firebase entegrasyonu -->
     <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-app-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-database-compat.js"></script>
     <script>
