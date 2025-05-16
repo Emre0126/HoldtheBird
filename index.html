@@ -125,23 +125,7 @@
         measurementId:     "G-8JYGR2BFC6"
       };
       firebase.initializeApp(firebaseConfig);
-      const auth = getAuth(app);
-
-  signInAnonymously(auth)
-    .then(() => {
-      console.log("Anonim giriş başarılı!");
-    })
-    .catch((error) => {
-      console.error("Anonim giriş hatası:", error.message);
-    });
-
-  // Giriş yapan kullanıcıyı izleme
-  onAuthStateChanged(auth, user => {
-    if (user) {
-      console.log("Giriş yapan uid:", user.uid);
-    }
-  });
-
+      
       function Firebase_StartListener(goName, methodName) {
         firebase.database().ref("leaderboard")
           .on("value", snap => {
